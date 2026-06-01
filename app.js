@@ -1,9 +1,23 @@
 const config = require('./config')
 const c = require('ansi-colors')
-const yargs = require('yargs/yargs')
-const { hideBin } = require('yargs/helpers')
-const argv = yargs(hideBin(process.argv)).argv
 const axios = require('axios')
+
+function parseArgs(argv) {
+    const parsed = {}
+
+    for (let i = 2; i < argv.length; i++) {
+        const arg = argv[i]
+
+        if ((arg === '--breach' || arg === '-b') && argv[i + 1]) {
+            parsed.breach = argv[i + 1]
+            i++
+        }
+    }
+
+    return parsed
+}
+
+const argv = parseArgs(process.argv)
 const options = {
     headers: {'hibp-api-key': config.hibp.token },
     responseType: 'json'
