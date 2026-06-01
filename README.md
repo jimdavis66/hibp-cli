@@ -24,5 +24,5 @@ $ npm install
 $ node app.js
 
 # Get accounts involved in a specified data breach
-$ node app.js --breach=Canva
+$ node app.js --breach Canva
 ```
